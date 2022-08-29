@@ -10,9 +10,26 @@
     <script src="js/tic-tac-toe.js" defer></script>
 </head>
 <body>
-    <div class="ttt-grid x-turn" data-ttt-grid>
-        <div class="ttt-cell x-mark" data-ttt-cell></div>
-        <div class="ttt-cell o-mark" data-ttt-cell></div>
+    <div class="opening-display" data-opening-display>
+			<div class="mode-display" data-mode-display>
+				<h1>Select Mode</h1>
+    		<button class="pvp" data-pvp-btn>Player vs Player</button>
+    		<button class="pva" data-pva-btn>Player vs AI</button>
+			</div>
+			<div class="player-display" data-player-display>
+				<label for="player-1">
+					Player 1:
+					<input type="text" id="player-1" name="player-1" required data-player-1>
+				</label>
+				<label for="player-2">
+					Player 2:
+					<input type="text" id="player-2" name="player-2" required data-player-2>
+				</label>
+			</div>
+    </div>
+    <div class="ttt-grid" data-ttt-grid>
+        <div class="ttt-cell" data-ttt-cell></div>
+        <div class="ttt-cell" data-ttt-cell></div>
         <div class="ttt-cell" data-ttt-cell></div>
         <div class="ttt-cell" data-ttt-cell></div>
         <div class="ttt-cell" data-ttt-cell></div>
@@ -21,17 +38,6 @@
         <div class="ttt-cell" data-ttt-cell></div>
         <div class="ttt-cell" data-ttt-cell></div>
     </div>
-    <h1>Select Mode</h1>
-    <button class="pvp" data-pvp-btn>Player vs Player</button>
-    <button class="pva" data-pva-btn>Player vs AI</button>
-    <label for="player-1">
-        Player 1:
-        <input type="text" id="player-1" name="player-1" required data-player-1>
-      </label>
-      <label for="player-2">
-        Player 2:
-        <input type="text" id="player-2" name="player-2" required data-player-2>
-      </label>
     <div class="winner-display" data-winner-display>
         <h3 class="winner-msg" data-winner-msg>Player 1 Wins!</h3>
         <button class="restart-btn" data-restart-btn>

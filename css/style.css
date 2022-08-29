@@ -514,7 +514,7 @@ body {
   background-color: rgba(0, 0, 0, .8);
   position: fixed;
   top: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-flow: column;
