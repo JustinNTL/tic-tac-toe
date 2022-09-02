@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JNTL Tic Tac Toe</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/logo.svg">
-    <script src="js/tic-tac-toe.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JNTL Tic Tac Toe</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg">
+  <script src="js/tic-tac-toe.js" defer></script>
 </head>
 <body>
-    <div class="opening-display" data-opening-display>
-			<div class="mode-display" data-mode-display>
-				<h1>Select Mode</h1>
-    		<button class="pvp" data-pvp-btn>Player vs Player</button>
-    		<button class="pva" data-pva-btn>Player vs AI</button>
-			</div>
-			<div class="player-display" data-player-display>
-				<label for="player-1">
-					Player 1:
-					<input type="text" id="player-1" name="player-1" required data-player-1>
-				</label>
-				<label for="player-2">
-					Player 2:
-					<input type="text" id="player-2" name="player-2" required data-player-2>
-				</label>
-			</div>
+  <div class="opening-display" data-opening-display>
+    <div class="mode-display" data-mode-display>
+      <h1 class="opening-title">Tic-Tac-Toe</h1>
+      <h3 class="mode-header">Select Mode</h3>
+      <div class="mode-btns">
+        <button class="pvp-btn" data-pvp-btn>Player vs Player</button>
+        <button class="pva-btn" data-pva-btn>Player vs AI</button>
+      </div>
     </div>
+    <div class="player-display" data-player-display>
+      <label for="player-1">Player 1:</label>
+      <input type="text" id="player-1" name="player-1" required data-player-1>
+      <label for="player-2">Player 2:</label>
+      <input type="text" id="player-2" name="player-2" required data-player-2>
+    </div>
+    <button class="start-btn" data-start-btn>Start!</button>
+  </div>
     <div class="ttt-grid" data-ttt-grid>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
-        <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
+      <div class="ttt-cell" data-ttt-cell></div>
     </div>
     <div class="winner-display" data-winner-display>
-        <h3 class="winner-msg" data-winner-msg>Player 1 Wins!</h3>
-        <button class="restart-btn" data-restart-btn>
-            <div class="restart-btn-text">Play Again?</div>
-        </button>
+      <h3 class="winner-msg" data-winner-msg>Player 1 Wins!</h3>
+      <button class="restart-btn" data-restart-btn>
+        <div class="restart-btn-text">Play Again?</div>
+      </button>
     </div>
 </body>
 </html>
