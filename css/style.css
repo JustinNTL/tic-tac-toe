@@ -408,13 +408,21 @@ body {
   background-color: white;
 }
 
+.show-flex-display {
+  display: flex;
+}
+
+.show-grid-display {
+  display: grid;
+}
+
 .opening-display {
   width: 100vw;
   height: 100vh;
   background: rgb(255, 255, 255, .9);
   position: fixed;
   top: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-flow: column;
@@ -454,14 +462,6 @@ body {
 .pvp-btn:hover {
   cursor: pointer;
   filter: brightness(70%);
-}
-
-.show-flex-display {
-  display: flex;
-}
-
-.show-grid-display {
-  display: grid;
 }
 
 .player-display {
