@@ -482,6 +482,10 @@ body {
   padding: .4rem 0 0 .2rem;
 }
 
+.input-error {
+  border-color: red;
+}
+
 .start-btn {
   border: .15rem solid red;
   padding: 2rem 8rem;
