@@ -17,19 +17,18 @@
       restartBtn.addEventListener('click', () => { 
         _transitionWinnerDisplay();
         _transitionOpeningDisplay();
+        _transitionStartBtnHide();
       });
     }
     
     function _render(display) {
       switch (display) {
         case 'opening':
-          if (Object.keys(playerController.players).length === 2) { // possible scope issue here in the playercontroller module, players is empty 
             if (openingDisplay.classList.contains('hide')) {
             openingDisplay.classList.remove('hide');
             } else {
             openingDisplay.classList.add('hide');
             }
-          }
           break;
         case 'player':
           if (playerDisplay.classList.contains('show')) {
@@ -44,6 +43,12 @@
           } else {
             winnerDisplay.classList.add('show');
           }
+          break;
+        case 'startShow':
+          startBtn.classList.add('show');
+          break;
+        case 'startHide':
+          startBtn.classList.remove('show');
           break;
       }
     }
@@ -67,11 +72,31 @@
       _render(display);
     }
 
+    function _transitionStartBtnShow() {
+      const display = 'startShow';
+      _render(display);
+    }
+
+    function _transitionStartBtnHide() {
+      const display = 'startHide';
+      _render(display);
+    }
+
+    function indicateStartShow() {
+      _transitionStartBtnShow();
+    }
+
+    function indicateStartHide() {
+      _transitionStartBtnHide();
+    }
+
     return {
       pvpBtn : pvpBtn,
       startBtn : startBtn,
       restartBtn : restartBtn,
-      changeDisplay : changeDisplay
+      changeDisplay : changeDisplay,
+      indicateStartShow : indicateStartShow,
+      indicateStartHide : indicateStartHide
     }
 
   })()
@@ -87,18 +112,20 @@ const gameController = (function() {
     const winnerMsg = document.querySelector('[data-winner-msg]');
     const xMark = 'x-mark';
     const oMark = 'o-mark';
+    const xRound = 'x-turn';
+    const oRound = 'o-turn';
     let xTurn;
     
-
     _init();
 
     function _init() {
+      xTurn = true;
+      _wipeBoard();
       tttCell.forEach(cell => {
         cell.addEventListener('click', _controlTurn, { once : true })
       });
-      xTurn = true;
+      displayController.restartBtn.addEventListener('click', _init);
       _indicateRoundHover();
-      displayController.restartBtn.addEventListener('click', _wipeBoard)
     }
 
     function _render(cell, currentTurn) {
@@ -110,19 +137,19 @@ const gameController = (function() {
       let currentTurn = xTurn ? xMark : oMark;
       _render(cell, currentTurn);
       if (_checkWin(currentTurn)) {
-        winnerMsg.innerText = `${xTurn ? playerController.players.player1 : playerController.players.player2} Dominates!`;
+        winnerMsg.innerText = `${xTurn ? playerController.player1.value : playerController.player2.value} Dominates!`;
         displayController.changeDisplay();
-      } else if ([...tttCell].every(cell => cell.classList.contains(xMark) || cell.classList.contains(oMark))) {
-        winnerMsg.innerText = `It's a Stalemate!`
-        displayController.changeDisplay();
-      }
+      } else if ([...tttCell].every(cell => {
+          cell.classList.contains(xMark) || cell.classList.contains(oMark)
+        })) {
+          winnerMsg.innerText = `It's a Stalemate!`
+          displayController.changeDisplay();
+        }
       xTurn = !xTurn;
       _indicateRoundHover();
     }
 
     function _indicateRoundHover() {
-      const xRound = 'x-turn';
-      const oRound = 'o-turn';
       tttGrid.classList.remove(xRound);
       tttGrid.classList.remove(oRound);
       if (xTurn) {
@@ -141,10 +168,12 @@ const gameController = (function() {
     }
 
     function _wipeBoard() {
+      tttGrid.classList.remove(xRound);
+      tttGrid.classList.remove(oRound);
       tttCell.forEach(cell => {
         cell.classList.remove(xMark);
         cell.classList.remove(oMark);
-        cell.removeEventListener('click', _controlTurn);
+        cell.removeEventListener('click', _controlTurn, { once : true });
       })
     }
 
@@ -158,7 +187,7 @@ const gameController = (function() {
     _init();
 
     function _init() {
-      displayController.pvpBtn.addEventListener('click', _wipePlayers);
+      window.onload = () => _wipePlayers();
       player1.addEventListener('keyup', _checkInput);
       player2.addEventListener('keyup', _checkInput);
       displayController.startBtn.addEventListener('click', _checkInput);
@@ -175,6 +204,11 @@ const gameController = (function() {
         player2.classList.add('input-error');
       } else {
         player2.classList.remove('input-error');
+      } 
+      if (player1.value !== '' && player2.value !== '') {
+        displayController.indicateStartShow();
+      } else {
+        displayController.indicateStartHide();
       }
       _addPlayers();
     }
@@ -192,19 +226,12 @@ const gameController = (function() {
     }
 
     return {
-      players : players
+      player1 : player1,
+      player2 : player2
     }
 
   })()
 
 })()
 
-
-// Code for player v player, v AI later/end
-// take in user input for names, assumption that x will be player 1 and o will be player 2.
-
-// remember to look at rubric eg. :
-
-/* if you only ever need ONE of something (gameBoard, displayController), 
-use a module. If you need multiples of something (players!), 
-create them with factories. */
+// Code for vs AI TBD

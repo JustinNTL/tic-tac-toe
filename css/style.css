@@ -491,12 +491,17 @@ body {
   padding: 2rem 8rem;
   background-color: white;
   font-size: 2rem;
+  display: none;
 }
 
 .start-btn:hover {
   cursor: pointer;
   background-color: red;
   color: white;
+}
+
+.start-btn.show {
+  display: block;
 }
 
 .ttt-grid {
